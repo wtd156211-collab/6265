@@ -1,0 +1,14 @@
+# 04-straight：直线段，5000 点；十公里直路，横向只剩不到半米抖动。
+# 逐行核对下面几行；# 开头的行是注释。
+# 上限 2 就是首尾两点：等间隔抽点到 2 点与它相同，本条考的是敢压到下限、端点不许动
+TRACK|samples/tracks/04-straight.txt|points=5000
+LIMIT|eps=1|max_points=2
+CHECK|out_rows|i_x_y|index_strictly_increasing=1|first=0|last=4999
+CHECK|deviation|cover_chord|eps=1|tol=1e-9
+CHECK|max_points|limit=2
+CHECK|crossing|self_intersection=none
+CHECK|stats|max_dev_matches_checker|tol=1e-6
+CHECK|determinism|simplify_runs=2|sha256_of_out|equal=1
+CHECK|determinism|pythonhashseed=0,1,2|sha256_of_out|equal=1
+CHECK|determinism|page_runs=2|sha256_of_page|equal=1
+BASELINE|uniform-round|max_points=2|max_dev=0.470170|over_eps=0

@@ -1,0 +1,13 @@
+# 01-arc：平滑曲线，4000 点；三段相切的圆弧，曲率逐段变化。
+# 逐行核对下面几行；# 开头的行是注释。
+TRACK|samples/tracks/01-arc.txt|points=4000
+LIMIT|eps=0.4|max_points=111
+CHECK|out_rows|i_x_y|index_strictly_increasing=1|first=0|last=3999
+CHECK|deviation|cover_chord|eps=0.4|tol=1e-9
+CHECK|max_points|limit=111
+CHECK|crossing|self_intersection=none
+CHECK|stats|max_dev_matches_checker|tol=1e-6
+CHECK|determinism|simplify_runs=2|sha256_of_out|equal=1
+CHECK|determinism|pythonhashseed=0,1,2|sha256_of_out|equal=1
+CHECK|determinism|page_runs=2|sha256_of_page|equal=1
+BASELINE|uniform-round|max_points=111|max_dev=0.523731|over_eps=1

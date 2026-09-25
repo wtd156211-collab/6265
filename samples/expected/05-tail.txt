@@ -1,0 +1,13 @@
+# 05-tail：极端长尾，1000000 点；一百万点里绝大多数是停驻与小抖动，只有一小段急弯。
+# 逐行核对下面几行；# 开头的行是注释。
+TRACK|samples/tracks/05-tail.txt|points=1000000
+LIMIT|eps=1|max_points=17
+CHECK|out_rows|i_x_y|index_strictly_increasing=1|first=0|last=999999
+CHECK|deviation|cover_chord|eps=1|tol=1e-9
+CHECK|max_points|limit=17
+CHECK|crossing|self_intersection=none
+CHECK|stats|max_dev_matches_checker|tol=1e-6
+CHECK|determinism|simplify_runs=2|sha256_of_out|equal=1
+CHECK|determinism|pythonhashseed=0,1,2|sha256_of_out|equal=1
+CHECK|determinism|page_runs=2|sha256_of_page|equal=1
+BASELINE|uniform-round|max_points=17|max_dev=14.454411|over_eps=1
